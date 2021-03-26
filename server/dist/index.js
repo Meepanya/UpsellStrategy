@@ -12,45 +12,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require("reflect-metadata");
 const apollo_server_1 = require("apollo-server");
-const node_fetch_1 = __importDefault(require("node-fetch"));
-const typeDefs = `
-    type Query {
-        getOffers: Product
-    }
-
-    type Offer {
-        title: String
-        short_description: String
-        original_price: Float
-        discounted_price: Float
-        image: String
-    }
-
-    type Product {
-        currency: String
-        offers: [Offer]
-    }
-`;
-const resolvers = {
-    Query: {
-        getOffers: (_1, _2) => __awaiter(void 0, void 0, void 0, function* () {
-            const response = yield node_fetch_1.default(`https://private-803503-digismoothietest.apiary-mock.com/offers`, {
-                method: "GET",
-            });
-            const body = yield response.text();
-            try {
-                console.log(body);
-                return JSON.stringify(body);
-            }
-            catch (err) {
-                console.error("Error: ", err);
-                console.error("Response body: ", response);
-            }
+const type_graphql_1 = require("type-graphql");
+const OfferResolver_1 = __importDefault(require("./resolvers/OfferResolver"));
+const ProductResolver_1 = __importDefault(require("./resolvers/ProductResolver"));
+const main = () => __awaiter(void 0, void 0, void 0, function* () {
+    const apolloServer = new apollo_server_1.ApolloServer({
+        schema: yield type_graphql_1.buildSchema({
+            resolvers: [OfferResolver_1.default, ProductResolver_1.default]
         }),
-    }
-};
-const server = new apollo_server_1.ApolloServer({ typeDefs, resolvers });
-server.listen({ port: 4000 })
-    .then(({ url }) => console.log(`Server running at ${url}`));
+    });
+    apolloServer.listen().then(({ url }) => {
+        console.log(`Server ready at ${url}`);
+    });
+});
+main().catch(err => {
+    console.error(err);
+});
 //# sourceMappingURL=index.js.map
