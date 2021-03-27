@@ -2,19 +2,19 @@ import { IOfferData, offers } from "../mockData/data";
 import Offer from "../schemas/Offer";
 import { Arg, Mutation, Query, Resolver } from "type-graphql";
 
-@Resolver(of => Offer) 
+@Resolver(() => Offer) 
 export default class {
-    @Query(returns => [Offer])
+    @Query(() => [Offer])
     fetchOffers(): IOfferData[] {
         return offers;
     };
 
-    @Query(returns => Offer, {nullable: true})
+    @Query(() => Offer, {nullable: true})
     getOffer(@Arg("id") id: number): IOfferData | undefined {
         return offers.find(offer => offer.id === id);
     };
 
-    @Mutation(returns => Offer)
+    @Mutation(() => Offer)
     markAsCompleted(@Arg("offerId") offerId: number): IOfferData {
         const offer = offers.find(offer => {
             return offer.id === offerId;

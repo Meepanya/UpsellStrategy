@@ -2,7 +2,7 @@ import { Field, Float, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
 export default class Offer {
-    @Field(() => Int)
+    @Field(() => Int!)
     id: number;
 
     @Field()
@@ -14,7 +14,7 @@ export default class Offer {
     @Field(() => Float)
     original_price: number;
 
-    @Field(() => Float)
+    @Field(() => Float, { nullable: true })
     discounted_price: number;
 
     @Field()

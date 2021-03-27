@@ -1,8 +1,9 @@
 import "reflect-metadata";
 // import "dotenv-safe/config";
-
+import express from "express";
 import { ApolloServer } from "apollo-server";
 import { buildSchema } from "type-graphql";
+import cors from "cors";
 // import fetch from "node-fetch";
 import OfferResolver from "./resolvers/OfferResolver";
 import ProductResolver from "./resolvers/ProductResolver";
@@ -65,13 +66,15 @@ import ProductResolver from "./resolvers/ProductResolver";
 
 const main = async () => {
 
+    const app = express();
+    app.use(cors());
+
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
             resolvers: [OfferResolver, ProductResolver]
         }),
     }); 
 
-    // apolloServer.applyMiddleware({ app, cors: false});
     apolloServer.listen().then(({url}) => {
         console.log(`Server ready at ${url}`)
     });

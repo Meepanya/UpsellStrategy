@@ -29,7 +29,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Offer.prototype, "original_price", void 0);
 __decorate([
-    type_graphql_1.Field(() => type_graphql_1.Float),
+    type_graphql_1.Field(() => type_graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], Offer.prototype, "discounted_price", void 0);
 __decorate([

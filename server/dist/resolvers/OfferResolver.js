@@ -43,27 +43,27 @@ let default_1 = class default_1 {
     ;
 };
 __decorate([
-    type_graphql_1.Query(returns => [Offer_1.default]),
+    type_graphql_1.Query(() => [Offer_1.default]),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Array)
 ], default_1.prototype, "fetchOffers", null);
 __decorate([
-    type_graphql_1.Query(returns => Offer_1.default, { nullable: true }),
+    type_graphql_1.Query(() => Offer_1.default, { nullable: true }),
     __param(0, type_graphql_1.Arg("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Object)
 ], default_1.prototype, "getOffer", null);
 __decorate([
-    type_graphql_1.Mutation(returns => Offer_1.default),
+    type_graphql_1.Mutation(() => Offer_1.default),
     __param(0, type_graphql_1.Arg("offerId")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Object)
 ], default_1.prototype, "markAsCompleted", null);
 default_1 = __decorate([
-    type_graphql_1.Resolver(of => Offer_1.default)
+    type_graphql_1.Resolver(() => Offer_1.default)
 ], default_1);
 exports.default = default_1;
 ;

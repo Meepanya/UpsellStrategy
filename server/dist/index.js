@@ -13,11 +13,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
+const express_1 = __importDefault(require("express"));
 const apollo_server_1 = require("apollo-server");
 const type_graphql_1 = require("type-graphql");
+const cors_1 = __importDefault(require("cors"));
 const OfferResolver_1 = __importDefault(require("./resolvers/OfferResolver"));
 const ProductResolver_1 = __importDefault(require("./resolvers/ProductResolver"));
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
+    const app = express_1.default();
+    app.use(cors_1.default());
     const apolloServer = new apollo_server_1.ApolloServer({
         schema: yield type_graphql_1.buildSchema({
             resolvers: [OfferResolver_1.default, ProductResolver_1.default]
