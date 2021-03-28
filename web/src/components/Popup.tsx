@@ -4,14 +4,17 @@ import { graphql, ChildProps } from "react-apollo";
 import offer from "../queries/offer";
 import { Offer, OfferVariables } from "../operation-result-types";
 import { InnerPopup, StyledPopup } from "../styled-components/popup.styles";
+import AlertButton from "./AlertButton";
 
 interface IProps {
     id: number;
     text: string;
-    closePopup(): void;
+    alertClicked: boolean;
+    closePopup(isClosedBtn: boolean): void;
 };
 
 class Popup extends React.Component<ChildProps<IProps, Offer, OfferVariables>> {
+    
     render() {
         console.log(this.props);
         const { data } = this.props;
@@ -33,8 +36,9 @@ class Popup extends React.Component<ChildProps<IProps, Offer, OfferVariables>> {
                     <li>{ offer.original_price }</li>
                     { offer.discounted_price ? <li>{ offer.original_price }</li> : null }
                     <li>{ offer.image}</li>
-                    <button onClick={this.props.closePopup}>Close Confirmation</button>
+                    { this.props.alertClicked ? <button onClick={() => {this.props.closePopup(!this.props.alertClicked)}}>Close Confirmation</button> : null }
                 </InnerPopup>
+                <AlertButton closePopup={this.props.closePopup}/>
             </StyledPopup>
         );
     };
