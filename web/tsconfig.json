@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/__tests__/globals.d.ts", "src/globals.d.ts", "jest.config.js", "babel.config.js"  ]
 }
