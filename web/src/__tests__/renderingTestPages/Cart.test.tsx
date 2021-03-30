@@ -3,7 +3,7 @@ import "cross-fetch/polyfill";
 import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 
 import Cart from "../../components/Cart";
-import { GetByBoundAttribute } from "../abstraction/types";
+import { GetByBoundAttribute } from "../typeChecking/types";
 
 let getTestById:GetByBoundAttribute;
 

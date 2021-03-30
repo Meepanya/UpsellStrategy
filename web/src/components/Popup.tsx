@@ -28,9 +28,10 @@ class Popup extends React.Component<ChildProps<IProps, Offer, OfferVariables>> {
         };
 
         return (
-            <StyledPopup>
+                <h1 data-testid="titleProduct">Click to Close Button to hide popup.
+            <StyledPopup >
                 <InnerPopup>
-                    <h1 data-testid="titleProduct">{ this.props.text }</h1>
+                    <h1>{ this.props.text }</h1>
                     <li>{ offer.title }</li>
                     <li>{ offer.short_description }</li>
                     <li>{ offer.original_price }</li>
@@ -40,6 +41,7 @@ class Popup extends React.Component<ChildProps<IProps, Offer, OfferVariables>> {
                 </InnerPopup>
                 <AlertButton closePopup={this.props.closePopup}/>
             </StyledPopup>
+            </h1>
         );
     };
 };
