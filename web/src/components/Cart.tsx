@@ -26,16 +26,19 @@ class Cart extends React.Component<{}, IReadonlyProps> {
 
     render() {
         return (
-            <div>
+            <div data-testid="divCart">
                 <h1>UpsellStrategy</h1>
-                <button onClick={this.togglePopup.bind(this, this.state.alertClicked, !this.state.showPopup)}>Add to Cart</button>
+                <button 
+                    data-testid="buttonToCart"
+                    onClick={this.togglePopup.bind(this, this.state.alertClicked, !this.state.showPopup)}>
+                    Add to Cart</button>
 
                 { this.state.showPopup 
                     ? <Popup 
-                        id={1} 
-                        text="Click to Close Button to hide popup."
-                        alertClicked={this.state.alertClicked}
-                        closePopup={this.togglePopup.bind(this)}
+                            id={1} 
+                            text="Click to Close Button to hide popup."
+                            alertClicked={this.state.alertClicked}
+                            closePopup={this.togglePopup.bind(this)}
                         /> 
                     : null
                 }

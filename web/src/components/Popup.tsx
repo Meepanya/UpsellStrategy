@@ -30,7 +30,7 @@ class Popup extends React.Component<ChildProps<IProps, Offer, OfferVariables>> {
         return (
             <StyledPopup>
                 <InnerPopup>
-                    <h1>{ this.props.text }</h1>
+                    <h1 data-testid="titleProduct">{ this.props.text }</h1>
                     <li>{ offer.title }</li>
                     <li>{ offer.short_description }</li>
                     <li>{ offer.original_price }</li>
